@@ -1,0 +1,96 @@
+.newRecipe {
+
+	&__container {
+	width: 100%;
+	max-width: 900px;
+	padding: 20px;
+	}
+
+	&__form {
+	width: 80%;
+	padding: 20px;
+	}
+
+	&__banner {
+		font-size: 46px;
+		font-weight: 300;
+		color: gray;
+		padding: 10px;
+		text-align: center;
+		}
+
+	&__subhead {
+		font-size: 30px;
+		font-weight: 300;
+		color: gray;
+		margin: 0 0 20px 5px;
+	}
+
+	&__title {
+    font-size: 26px;
+    color: gray;
+    line-height: .9;
+    font-weight: 300;
+    margin-bottom: 20px;
+    padding-left: 0px;
+   }
+
+  &__img {
+	  max-width: 100%;
+	  height: auto;
+	  margin: 0 0 20px 0;
+	  border: 1px solid gray;
+      }
+
+	&__input {
+		display: block;
+		width: 100%;
+		padding: .5rem .75rem !important;
+		font-size: 1rem !important;
+		line-height: 1.25;
+		color: #464a4c;
+		background-color: #fff;
+		background-image: none;
+		-webkit-background-clip: padding-box;
+		background-clip: padding-box;
+		border: 1px solid rgba(0,0,0,.15) !important;
+		border-radius: .25rem !important;
+		-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+		-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+	}
+
+	&__button {
+			background: green;
+			color: white;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			font-weight: 300;
+			font-size: .75em;
+			text-align: center;
+			text-decoration: none !important;
+			padding: 8px 12px;
+			margin: 0 0 20px 5px;
+			appearance: none;
+			-webkit-appearance: none;
+			border: none;
+
+			&:hover, &-active, &:focus {
+					background: lightgreen;
+					transition: all 180ms ease-in-out;
+					outline: none;
+					border: none;
+			}
+		}
+
+		&__cancel {
+			margin-left: 20px;
+			background: red
+			&:hover, &-active, &:focus {
+					background: orange;
+			}
+		}
+}
+

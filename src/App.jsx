@@ -8,6 +8,7 @@ import {
 
 import RecipeIndex from './containers/RecipeIndex';
 import NewRecipe from './containers/NewRecipe';
+import EditRecipe from './containers/EditRecipe';
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class App extends React.Component {
 
           <Route exact path="/" component={RecipeIndex} />
           <Route path="/new" component={NewRecipe} />
+          <Route path="/edit/:key" component={EditRecipe} />
         </main>
       </BrowserRouter>
     );

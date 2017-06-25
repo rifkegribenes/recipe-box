@@ -6,7 +6,8 @@ class RecipeIndex extends Component {
   constructor() {
     super();
     this.state = {
-      recipes: Object.values(JSON.parse(localStorage.getItem('recipes'))),
+      recipes: JSON.parse(localStorage.getItem('recipes')) || {},
+      recipesArr: Object.values(JSON.parse(localStorage.getItem('recipes'))) || [],
       msg: false,
       currentKey: '',
       modalOpen: false,
@@ -18,22 +19,24 @@ class RecipeIndex extends Component {
   }
 
   componentDidMount() {
-
   }
 
   onDelete(key) {
-    let recipes = [...this.state.recipes];
+    let recipesArr = this.state.recipesArr;
     let index = recipes.indexOf(key);
-    recipes.splice(index, 1);
-    console.dir(recipes);
+    recipesArr.splice(index, 1);
+    console.dir(recipesArr);
   this.setState(prevState => {
+    let recipes = recipesArr.map(recipe => {
+        console.log(recipe);
+      });
     localStorage.setItem('recipes', JSON.stringify(recipes));
-    return { 
+    return {
     msg: true,
     modalOpen: false,
-    recipes, 
+    recipes,
     };
-   });  
+   });
       setTimeout(() => {
         this.setState({
           msg: false,
@@ -60,7 +63,7 @@ class RecipeIndex extends Component {
 
 
 render() {
-	let recipesArr = this.state.recipes.map(recipe => (
+  let recipesArr = this.state.recipesArr.map(recipe => (
         <tr key={recipe.key} className="recipeInd__row" >
           <td className="recipeInd__cell recipeInd__title">
             <Link to={`/recipes/${recipe.key}`}>
@@ -87,9 +90,9 @@ render() {
               onClick={() => this.openModal(recipe.key)}
             />
           </td>
-        </tr>));
+        </tr>)); 
 
-    return (
+    return ( 
       <div className="recipeInd__container">
       <button onClick={() => this.onDeleteAll()}>Delete All</button>
         <Modal
@@ -134,7 +137,6 @@ render() {
           </div>
         </Modal>
         {this.state.msg && <div className="recipeInd__message">The recipe was successfully deleted.</div>}
-        { (recipesArr.length) &&
         <div className="recipeInd__table-cont">
           <table className="recipeInd__grid">
             <thead>
@@ -150,8 +152,9 @@ render() {
               {recipesArr.reverse()}
             </tbody>
           </table>
-        </div>}
       </div>
+      </div>
+      
     );
 }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import shortid from 'shortid';
 
@@ -8,46 +8,36 @@ class NewRecipe extends React.Component {
     super(props);
     this.state = {
     	newRecipe: {
-    		key: null,
         title: '',
         ingredients: [],
         instructions: [],
-        notes: '',
         categories: [],
         tags: [],
-        imgUrl: '',
-        imgAlt: '',
-        imgSuccess: '',
-        imgProgress: '',
       },
-      recipes: [],
+    recipes: JSON.parse(localStorage.getItem('recipes')),
      };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-handleChange(event) {
-    const newRecipe = Object.assign({}, this.state.newRecipe);
-    newRecipe[event.target.name] = event.target.value;
-    this.setState({
-      newRecipe,
-    });
+  componentDidMount() {
+  }
+
+handleChange({target}) {
+	this.setState({newRecipe: {...this.state.newRecipe, [target.name]: target.value}});
   }
 
 handleSubmit(event) {
 	event.preventDefault();
-	const newRecipe = Object.assign({}, this.state.newRecipe);
-	const recipes = Object.assign([], this.state.recipes);
 	const key = shortid.generate();
-	newRecipe.key = key;
-	console.log(key)
-	console.log(newRecipe);
-  localStorage.setItem(key, JSON.stringify(this.state.newRecipe));
-  this.setState({newRecipe});
-  recipes.push(newRecipe);
-  const cachedRecipes = localStorage.getItem('recipes');
-	Object.keys(localStorage).forEach(key => console.log(localStorage[key]));
-  // this.props.history.push('/');
+	let recipes = {...this.state.recipes}
+  this.setState(prevState => {
+  	const newRecipe = {...prevState.newRecipe, key: key};
+  	recipes[key] = newRecipe
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+    this.props.history.push('/');
+    return { recipes };
+   });   
   }
 
 render() {
@@ -79,6 +69,22 @@ render() {
               onChange={e => this.handleChange(e)}
               placeholder="List of instructions, separated by commas"
               value={instructions}
+            />
+            <br />
+            <input
+              className="newRecipe__input"
+              type="text" name="categories"
+              onChange={e => this.handleChange(e)}
+              placeholder="List of categories, separated by commas"
+              value={categories}
+            />
+            <br />
+            <input
+              className="newRecipe__input"
+              type="text" name="tags"
+              onChange={e => this.handleChange(e)}
+              placeholder="List of tags, separated by commas"
+              value={tags}
             />
             <br />
             <button

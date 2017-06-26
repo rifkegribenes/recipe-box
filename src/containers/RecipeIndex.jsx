@@ -2,35 +2,61 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
+
 class RecipeIndex extends Component {
   constructor() {
     super();
     this.state = {
-      recipes: JSON.parse(localStorage.getItem('recipes')) || {},
-      recipesArr: Object.values(JSON.parse(localStorage.getItem('recipes'))) || [],
+      recipes: JSON.parse(localStorage.getItem('recipes')) || {},            
       msg: false,
-      currentKey: '',
       modalOpen: false,
+      deleteKey: null,
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.onDelete = this.onDelete.bind(this);
-    this.onDeleteAll = this.onDeleteAll.bind(this);
+    this.onReset = this.onReset.bind(this);
   }
 
   componentDidMount() {
+    if (!this.state.recipes) {
+      const defaultRecipes =  {
+      1: {
+        title: 'chocolate cake',
+        ingredients: ['chocolate', 'butter', 'eggs', 'sugar', 'flour'],
+        instructions: ['mix', 'bake'],
+        categories: ['desserts'],
+        key: '1',
+      },
+      2: {
+        title: 'enchiladas',
+        ingredients: ['corn tortillas', 'cheese', 'red chiles'],
+        instructions: ['make sauce', 'shred cheese', 'fry tortillas', 'assemble', 'bake'],
+        categories: ['entrees'],
+        tags: ['mexican'],
+        key: '2',
+      },
+      };
+      this.setState({
+        recipes: defaultRecipes,
+      });
+    } else {
+      const cachedRecipes = JSON.parse(localStorage.getItem('recipes'));
+      this.setState({
+        recipes: cachedRecipes,
+      });
+
+    }
+  }
+
+  componentWillUnmount() {
+  	localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
   }
 
   onDelete(key) {
-    let recipesArr = this.state.recipesArr;
-    let index = recipes.indexOf(key);
-    recipesArr.splice(index, 1);
-    console.dir(recipesArr);
+    let recipes = {...this.state.recipes};
+    delete recipes[key];
   this.setState(prevState => {
-    let recipes = recipesArr.map(recipe => {
-        console.log(recipe);
-      });
-    localStorage.setItem('recipes', JSON.stringify(recipes));
     return {
     msg: true,
     modalOpen: false,
@@ -45,11 +71,30 @@ class RecipeIndex extends Component {
       }, 2000);
   }
 
-  onDeleteAll() {
+  onReset() {
   	localStorage.clear();
-  	this.state = {
-      recipes: {},
-    };
+  	this.setState({
+      recipes: {
+      1: {
+        title: 'chocolate cake',
+        ingredients: ['chocolate', 'eggs', 'flour'],
+        instructions: ['mix', 'bake'],
+        categories: ['desserts'],
+        key: '1',
+      },
+      2: {
+        title: 'enchiladas',
+        ingredients: ['corn tortillas', 'cheese', 'red chiles'],
+        instructions: ['make sauce', 'shred cheese', 'fry tortillas', 'assemble', 'bake'],
+        categories: ['entrees'],
+        tags: ['mexican'],
+        key: '2',
+      },
+    },
+      msg: false,
+      modalOpen: false,
+      deleteKey: null,
+    });
   }
 
   closeModal() {
@@ -63,7 +108,7 @@ class RecipeIndex extends Component {
 
 
 render() {
-  let recipesArr = this.state.recipesArr.map(recipe => (
+  let recipesArr = Object.values(this.state.recipes).map(recipe => (
         <tr key={recipe.key} className="recipeInd__row" >
           <td className="recipeInd__cell recipeInd__title">
             <Link to={`/recipes/${recipe.key}`}>
@@ -93,8 +138,9 @@ render() {
         </tr>)); 
 
     return ( 
+
       <div className="recipeInd__container">
-      <button onClick={() => this.onDeleteAll()}>Delete All</button>
+      <button onClick={() => this.onReset()}>Reset</button>
         <Modal
           isOpen={this.state.modalOpen}
           onAfterOpen={this.afterOpenModal}
@@ -149,7 +195,11 @@ render() {
               </tr>
             </thead>
             <tbody>
-              {recipesArr.reverse()}
+            {!recipesArr.length ? 
+            <tr className="recipeInd__row"><td className="recipeInd__cell" colSpan={5}>No Recipes</td></tr> :
+              recipesArr.reverse()
+
+            }
             </tbody>
           </table>
       </div>

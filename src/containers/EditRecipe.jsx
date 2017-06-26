@@ -8,18 +8,21 @@ class EditRecipe extends React.Component {
     this.state = {
       key: this.props.match.params.key,
       recipes: {...JSON.parse(localStorage.getItem('recipes'))},
-      recipe: {},
+      recipe: {
+        title: '',
+        ingredients: [],
+        instructions: [],
+        categories: [],
+        tags: [],
+      },
      };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-  	console.dir(this.state.recipes);
-  	console.log(this.state.key);
   	const recipe = this.state.recipes[this.state.key];
   	this.setState({ recipe });
-  	console.log(this.state.recipe);
   }
 
 handleChange({target}) {
@@ -29,9 +32,9 @@ handleChange({target}) {
 handleSubmit(event) {
 	event.preventDefault();
 	let recipes = {...this.state.recipes}
-  let key = this.state.key;
-  recipes[key] = recipe;
-  this.setState(prevState => {
+    let key = this.state.key;
+    recipes[key] = this.state.recipe;
+    this.setState(prevState => {
     localStorage.setItem('recipes', JSON.stringify(recipes));
     this.props.history.push('/');
     return { recipes };
@@ -90,7 +93,7 @@ render() {
               onClick={e => this.handleSubmit(e)}
             >Update Recipe</button>
             <Link
-              to="/index"
+              to="/"
               className="newRecipe__cancel newRecipe__button"
             >Cancel</Link>
           </form>

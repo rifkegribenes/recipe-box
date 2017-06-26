@@ -15,12 +15,17 @@ class NewRecipe extends React.Component {
         tags: [],
       },
     recipes: JSON.parse(localStorage.getItem('recipes')),
+    msg: false,
      };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+   // localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
   }
 
 handleChange({target}) {
@@ -30,14 +35,33 @@ handleChange({target}) {
 handleSubmit(event) {
 	event.preventDefault();
 	const key = shortid.generate();
-	let recipes = {...this.state.recipes}
-  this.setState(prevState => {
-  	const newRecipe = {...prevState.newRecipe, key: key};
-  	recipes[key] = newRecipe
-    localStorage.setItem('recipes', JSON.stringify(recipes));
-    this.props.history.push('/');
-    return { recipes };
-   });   
+	let recipes = {...this.state.recipes};
+  	const newRecipe = {...this.state.newRecipe, key};  	
+  	this.setState(prevState => {
+     const recipes = {...prevState.recipes, [newRecipe.key]: newRecipe}; 
+     return { 
+     recipes: recipes,
+     msg: true,
+     newRecipe: {
+        title: '',
+        ingredients: [],
+        instructions: [],
+        categories: [],
+        tags: [],
+      }, 
+     }; 
+   });
+   setTimeout(() => {
+        this.setState({
+          msg: false,
+        });
+  this.props.history.push('/');  
+      }, 2000);
+   
+  }
+
+  componentWillUnmount() {
+  	localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
   }
 
 render() {
@@ -96,6 +120,7 @@ render() {
               to="/index"
               className="newRecipe__cancel newRecipe__button"
             >Cancel</Link>
+            {this.state.msg && <div className="recipeInd__message">Your recipe was saved.</div>}
           </form>
         </div>
       </div>

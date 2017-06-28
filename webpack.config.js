@@ -33,6 +33,8 @@ module.exports = {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
+    historyApiFallback: true,
+    contentBase: './',
   },
   entry: [
     'react-hot-loader/patch',
@@ -61,6 +63,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.join(__dirname, '/build'),
+    publicPath: '/',
   },
   plugins: dev ?
   [

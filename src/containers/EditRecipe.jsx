@@ -13,7 +13,6 @@ class EditRecipe extends React.Component {
         ingredients: [],
         instructions: [],
         categories: [],
-        tags: [],
       },
      };
     this.handleChange = this.handleChange.bind(this);
@@ -33,6 +32,14 @@ handleSubmit(event) {
 	event.preventDefault();
 	let recipes = {...this.state.recipes}
     let key = this.state.key;
+    let ingredients = this.state.recipe.ingredients.split('\n');
+    let instructions = this.state.recipe.instructions.split('\n');
+    this.setState({
+      recipe: {
+        ingredients,
+        instructions,
+      }
+    })
     recipes[key] = this.state.recipe;
     this.setState(prevState => {
     localStorage.setItem('recipes', JSON.stringify(recipes));
@@ -42,60 +49,53 @@ handleSubmit(event) {
   }
 
 render() {
-    const { title, imgUrl, imgAlt, ingredients, imgSuccess, imgProgress, instructions, notes, categories, tags } = this.state.recipe;
+    const { title, ingredients, instructions, categories } = this.state.recipe;
     return (
       <div>
-        <h2 className="newRecipe__banner">Update Recipe</h2>
+        <h2 className="newRecipe__banner">.:: Update Recipe ::.</h2>
         <div className="newRecipe__container">
           <form className="newRecipe__form">
             <input
-              className="newRecipe__input"
+              className="newRecipe__input c1"
               type="text" name="title"
               onChange={e => this.handleChange(e)}
               placeholder="Recipe Title"
               value={title}
             />
-            <br />
             <textarea
-              className="newRecipe__input"
+              className="newRecipe__input c2 newRecipe__textarea"
               name="ingredients" onChange={e => this.handleChange(e)}
-              placeholder="List of ingredients, separated by commas"
+              placeholder="List of ingredients, one per line"
               value={ingredients}
+              rows="5"
             />
-            <br />
-            <input
-              className="newRecipe__input"
+            <textarea
+              className="newRecipe__input c3 newRecipe__textarea"
               type="text" name="instructions"
               onChange={e => this.handleChange(e)}
-              placeholder="List of instructions, separated by commas"
+              placeholder="List of instructions, one per line"
               value={instructions}
+              rows="5"
             />
-            <br />
             <input
-              className="newRecipe__input"
+              className="newRecipe__input c4"
               type="text" name="categories"
               onChange={e => this.handleChange(e)}
               placeholder="List of categories, separated by commas"
               value={categories}
             />
-            <br />
-            <input
-              className="newRecipe__input"
-              type="text" name="tags"
-              onChange={e => this.handleChange(e)}
-              placeholder="List of tags, separated by commas"
-              value={tags}
-            />
-            <br />
+            <div className="newRecipe__buttoncont">
             <button
               className="newRecipe__submit newRecipe__button"
               type="submit"
               onClick={e => this.handleSubmit(e)}
-            >Update Recipe</button>
+            >Save Recipe</button>
             <Link
               to="/"
               className="newRecipe__cancel newRecipe__button"
             >Cancel</Link>
+            </div>
+            {this.state.msg && <div className="recipeInd__message">Your recipe was saved.</div>}
           </form>
         </div>
       </div>

@@ -7,7 +7,7 @@ class RecipeIndex extends Component {
   constructor() {
     super();
     this.state = {
-      recipes: JSON.parse(localStorage.getItem('recipes')) || {},            
+      recipes: JSON.parse(localStorage.getItem('recipes')) || {},
       msg: false,
       modalOpen: false,
       deleteKey: null,
@@ -22,18 +22,17 @@ class RecipeIndex extends Component {
     if (!this.state.recipes) {
       const defaultRecipes =  {
       1: {
-        title: 'chocolate cake',
-        ingredients: ['chocolate', 'butter', 'eggs', 'sugar', 'flour'],
-        instructions: ['mix', 'bake'],
-        categories: ['desserts'],
+        title: 'Almost Flourless Chocolate Cake',
+        ingredients: ['7 oz. dark chocolate, roughly chopped', '7 oz. unsalted butter', '1 1/3 cup (250 grams) granulated sugar', '5 large eggs', '1 TB flour'],
+        instructions: ['Preheat oven to 375° F, and butter an 8-inch round cake pan. Line the base of the pan with parchment, and butter the parchment too.', 'Set a bowl above a pot of simmering water, to create a double boiler. Place the chocolate and butter in the bowl, and let melt, stirring occasionally. When melted, stir in the chocolate, and set aside to cool for a few minutes. Then add the eggs, one by one, stirring well after each addition, and then add the flour.', 'Pour batter into the buttered cake pan and bake for 20-25 minutes, or until most of the cake is somewhat set, and only the center jiggles. Remove to a rack, and let cool.', 'To serve, run a knife along the edge, turn upside-down onto a plate, peel the paper off the bottom, then flip right side up onto another plate.'],
+        categories: ['Desserts'],
         key: '1',
       },
       2: {
-        title: 'enchiladas',
-        ingredients: ['corn tortillas', 'cheese', 'red chiles'],
-        instructions: ['make sauce', 'shred cheese', 'fry tortillas', 'assemble', 'bake'],
+        title: 'Enchiladas',
+        ingredients: ['20-24 corn tortillas', '1 lb red chiles', '16 oz Monterey Jack and/or Cheddar cheese', '1 white onion', '1 clove garlic', 'Salt to taste', 'Oil for frying', 'Avocado slices and cilantro for garnish'],
+        instructions: ['Preheat oven to 350° F. Soak dried chiles in hot water.', 'When chiles are soft, pull off stems and rinse out seeds. Reserve soaking water.', 'Put chiles in blender with enough soaking water to cover. Puree.', 'Push pureed chiles through wire strainer into medium saucepan.', 'Add pressed or minced garlic clove and salt to taste.', 'Cook over low heat for 10-15 minutes.', 'Mince onion, grate cheese.', 'Heat oil in cast iron skillet to 350°.', 'Fry tortillas in oil until just pliable, not crisp.', 'Dip each tortilla in sauce to coat, roll around cheese and minced onions, and lay in baking pan.', 'Pour remaining sauce and cheese over top.', 'Cover with aluminum foil.', 'Bake 20 minutes or until cheese is melted.', 'Garnish with avocado slices and cilantro.',],
         categories: ['entrees'],
-        tags: ['mexican'],
         key: '2',
       },
       };
@@ -76,21 +75,20 @@ class RecipeIndex extends Component {
   	this.setState({
       recipes: {
       1: {
-        title: 'chocolate cake',
-        ingredients: ['chocolate', 'eggs', 'flour'],
-        instructions: ['mix', 'bake'],
-        categories: ['desserts'],
+        title: 'Almost Flourless Chocolate Cake',
+        ingredients: ['7 oz. dark chocolate, roughly chopped', '7 oz. unsalted butter', '1 1/3 cup (250 grams) granulated sugar', '5 large eggs', '1 TB flour'],
+        instructions: ['Preheat oven to 375° F, and butter an 8-inch round cake pan. Line the base of the pan with parchment, and butter the parchment too.', 'Set a bowl above a pot of simmering water, to create a double boiler. Place the chocolate and butter in the bowl, and let melt, stirring occasionally. When melted, stir in the chocolate, and set aside to cool for a few minutes. Then add the eggs, one by one, stirring well after each addition, and then add the flour.', 'Pour batter into the buttered cake pan and bake for 20-25 minutes, or until most of the cake is somewhat set, and only the center jiggles. Remove to a rack, and let cool.', 'To serve, run a knife along the edge, turn upside-down onto a plate, peel the paper off the bottom, then flip right side up onto another plate.'],
+        categories: ['Desserts'],
         key: '1',
       },
       2: {
-        title: 'enchiladas',
-        ingredients: ['corn tortillas', 'cheese', 'red chiles'],
-        instructions: ['make sauce', 'shred cheese', 'fry tortillas', 'assemble', 'bake'],
-        categories: ['entrees'],
-        tags: ['mexican'],
+        title: 'Enchiladas',
+        ingredients: ['20-24 corn tortillas', '1 lb red chiles', '16 oz Monterey Jack and/or Cheddar cheese', '1 white onion', '1 clove garlic', 'Salt to taste', 'Oil for frying', 'Avocado slices and cilantro for garnish'],
+        instructions: ['Preheat oven to 350° F. Soak dried chiles in hot water.', 'When chiles are soft, pull off stems and rinse out seeds. Reserve soaking water.', 'Put chiles in blender with enough soaking water to cover. Puree.', 'Push pureed chiles through wire strainer into medium saucepan.', 'Add pressed or minced garlic clove and salt to taste.', 'Cook over low heat for 10-15 minutes.', 'Mince onion, grate cheese.', 'Heat oil in cast iron skillet to 350°.', 'Fry tortillas in oil until just pliable, not crisp.', 'Dip each tortilla in sauce to coat, roll around cheese and minced onions, and lay in baking pan.', 'Pour remaining sauce and cheese over top.', 'Cover with aluminum foil.', 'Bake 20 minutes or until cheese is melted.', 'Garnish with avocado slices and cilantro.',],
+        categories: ['Entrees'],
         key: '2',
       },
-    },
+      },
       msg: false,
       modalOpen: false,
       deleteKey: null,
@@ -118,9 +116,6 @@ render() {
           <td className="recipeInd__cell recipeInd__categories">
             {recipe.categories}
           </td>
-          <td className="recipeInd__cell recipeInd__tags">
-            {recipe.tags}
-          </td>
           <td className="recipeInd__cell recipeInd__icon-container">
             <Link
               to={`/edit/${recipe.key}`}
@@ -135,9 +130,9 @@ render() {
               onClick={() => this.openModal(recipe.key)}
             />
           </td>
-        </tr>)); 
+        </tr>));
 
-    return ( 
+    return (
 
       <div className="recipeInd__container">
       <button onClick={() => this.onReset()}>Reset</button>
@@ -189,14 +184,13 @@ render() {
               <tr>
                 <th className="recipeInd__tableHead">Title</th>
                 <th className="recipeInd__tableHead">Categories</th>
-                <th className="recipeInd__tableHead">Tags</th>
                 <th className="recipeInd__tableHead">Edit</th>
                 <th className="recipeInd__tableHead">Delete</th>
               </tr>
             </thead>
             <tbody>
-            {!recipesArr.length ? 
-            <tr className="recipeInd__row"><td className="recipeInd__cell" colSpan={5}>No Recipes</td></tr> :
+            {!recipesArr.length ?
+            <tr className="recipeInd__row"><td className="recipeInd__cell" colSpan={4}>No Recipes</td></tr> :
               recipesArr.reverse()
 
             }
@@ -204,7 +198,7 @@ render() {
           </table>
       </div>
       </div>
-      
+
     );
 }
 }

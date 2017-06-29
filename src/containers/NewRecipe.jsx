@@ -11,7 +11,10 @@ class NewRecipe extends React.Component {
         title: '',
         ingredients: [],
         instructions: [],
+        ingredientString: '',
+        instructionString: '',
         categories: [],
+        source: {},
       },
     recipes: JSON.parse(localStorage.getItem('recipes')),
     msg: false,
@@ -29,13 +32,17 @@ class NewRecipe extends React.Component {
 
 handleChange({target}) {
 	this.setState({newRecipe: {...this.state.newRecipe, [target.name]: target.value}});
-  }
+  let adjustedHeight = target.clientHeight;
+  adjustedHeight = Math.max(target.scrollHeight, adjustedHeight);
+  if (adjustedHeight > target.clientHeight)
+    target.style.height = adjustedHeight + "px";
+}
 
 handleSubmit(event) {
 	event.preventDefault();
 	const key = shortid.generate();
-	let ingredients = this.state.newRecipe.ingredients.split('\n');
-	let instructions = this.state.newRecipe.instructions.split('\n');
+	let ingredients = this.state.newRecipe.ingredientString.split('\n');
+	let instructions = this.state.newRecipe.instructionString.split('\n');
 	let recipes = {...this.state.recipes};
   	const newRecipe = {...this.state.newRecipe, key, ingredients, instructions};
   	this.setState(prevState => {
@@ -45,9 +52,12 @@ handleSubmit(event) {
      msg: true,
      newRecipe: {
         title: '',
+        ingredientString: '',
         ingredients: [],
+        instructionString: '',
         instructions: [],
         categories: [],
+        source: {},
       },
      };
    });
@@ -66,7 +76,7 @@ handleSubmit(event) {
 
 render() {
 	const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
-    const { title, ingredients, instructions, categories } = this.state.newRecipe;
+    const { title, ingredientString, instructionString, categories } = this.state.newRecipe;
     return (
       <div>
         <h2 className="newRecipe__banner">.:: Add Recipe ::.</h2>
@@ -81,18 +91,16 @@ render() {
             />
             <textarea
               className="newRecipe__input c2 newRecipe__textarea"
-              name="ingredients" onChange={e => this.handleChange(e)}
+              name="ingredientString" onChange={e => this.handleChange(e)}
               placeholder="List of ingredients, one per line"
-              value={ingredients}
-              rows="5"
+              value={ingredientString}
             />
             <textarea
               className="newRecipe__input c3 newRecipe__textarea"
-              type="text" name="instructions"
+              type="text" name="instructionString"
               onChange={e => this.handleChange(e)}
               placeholder="List of instructions, one per line"
-              value={instructions}
-              rows="5"
+              value={instructionString}
             />
             <input
               className="newRecipe__input c4"

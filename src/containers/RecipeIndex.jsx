@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import defaultRecipes from './DefaultRecipes';
 
 
 class RecipeIndex extends Component {
@@ -20,22 +21,6 @@ class RecipeIndex extends Component {
 
   componentDidMount() {
     if (!this.state.recipes) {
-      const defaultRecipes =  {
-      1: {
-        title: 'Almost Flourless Chocolate Cake',
-        ingredients: ['7 oz. dark chocolate, roughly chopped', '7 oz. unsalted butter', '1 1/3 cup (250 grams) granulated sugar', '5 large eggs', '1 TB flour'],
-        instructions: ['Preheat oven to 375° F, and butter an 8-inch round cake pan. Line the base of the pan with parchment, and butter the parchment too.', 'Set a bowl above a pot of simmering water, to create a double boiler. Place the chocolate and butter in the bowl, and let melt, stirring occasionally. When melted, stir in the chocolate, and set aside to cool for a few minutes. Then add the eggs, one by one, stirring well after each addition, and then add the flour.', 'Pour batter into the buttered cake pan and bake for 20-25 minutes, or until most of the cake is somewhat set, and only the center jiggles. Remove to a rack, and let cool.', 'To serve, run a knife along the edge, turn upside-down onto a plate, peel the paper off the bottom, then flip right side up onto another plate.'],
-        categories: ['Desserts'],
-        key: '1',
-      },
-      2: {
-        title: 'Enchiladas',
-        ingredients: ['20-24 corn tortillas', '1 lb red chiles', '16 oz Monterey Jack and/or Cheddar cheese', '1 white onion', '1 clove garlic', 'Salt to taste', 'Oil for frying', 'Avocado slices and cilantro for garnish'],
-        instructions: ['Preheat oven to 350° F. Soak dried chiles in hot water.', 'When chiles are soft, pull off stems and rinse out seeds. Reserve soaking water.', 'Put chiles in blender with enough soaking water to cover. Puree.', 'Push pureed chiles through wire strainer into medium saucepan.', 'Add pressed or minced garlic clove and salt to taste.', 'Cook over low heat for 10-15 minutes.', 'Mince onion, grate cheese.', 'Heat oil in cast iron skillet to 350°.', 'Fry tortillas in oil until just pliable, not crisp.', 'Dip each tortilla in sauce to coat, roll around cheese and minced onions, and lay in baking pan.', 'Pour remaining sauce and cheese over top.', 'Cover with aluminum foil.', 'Bake 20 minutes or until cheese is melted.', 'Garnish with avocado slices and cilantro.',],
-        categories: ['entrees'],
-        key: '2',
-      },
-      };
       this.setState({
         recipes: defaultRecipes,
       });
@@ -73,22 +58,7 @@ class RecipeIndex extends Component {
   onReset() {
   	localStorage.clear();
   	this.setState({
-      recipes: {
-      1: {
-        title: 'Almost Flourless Chocolate Cake',
-        ingredients: ['7 oz. dark chocolate, roughly chopped', '7 oz. unsalted butter', '1 1/3 cup (250 grams) granulated sugar', '5 large eggs', '1 TB flour'],
-        instructions: ['Preheat oven to 375° F, and butter an 8-inch round cake pan. Line the base of the pan with parchment, and butter the parchment too.', 'Set a bowl above a pot of simmering water, to create a double boiler. Place the chocolate and butter in the bowl, and let melt, stirring occasionally. When melted, stir in the chocolate, and set aside to cool for a few minutes. Then add the eggs, one by one, stirring well after each addition, and then add the flour.', 'Pour batter into the buttered cake pan and bake for 20-25 minutes, or until most of the cake is somewhat set, and only the center jiggles. Remove to a rack, and let cool.', 'To serve, run a knife along the edge, turn upside-down onto a plate, peel the paper off the bottom, then flip right side up onto another plate.'],
-        categories: ['Desserts'],
-        key: '1',
-      },
-      2: {
-        title: 'Enchiladas',
-        ingredients: ['20-24 corn tortillas', '1 lb red chiles', '16 oz Monterey Jack and/or Cheddar cheese', '1 white onion', '1 clove garlic', 'Salt to taste', 'Oil for frying', 'Avocado slices and cilantro for garnish'],
-        instructions: ['Preheat oven to 350° F. Soak dried chiles in hot water.', 'When chiles are soft, pull off stems and rinse out seeds. Reserve soaking water.', 'Put chiles in blender with enough soaking water to cover. Puree.', 'Push pureed chiles through wire strainer into medium saucepan.', 'Add pressed or minced garlic clove and salt to taste.', 'Cook over low heat for 10-15 minutes.', 'Mince onion, grate cheese.', 'Heat oil in cast iron skillet to 350°.', 'Fry tortillas in oil until just pliable, not crisp.', 'Dip each tortilla in sauce to coat, roll around cheese and minced onions, and lay in baking pan.', 'Pour remaining sauce and cheese over top.', 'Cover with aluminum foil.', 'Bake 20 minutes or until cheese is melted.', 'Garnish with avocado slices and cilantro.',],
-        categories: ['Entrees'],
-        key: '2',
-      },
-      },
+      recipes: defaultRecipes,
       msg: false,
       modalOpen: false,
       deleteKey: null,
@@ -153,12 +123,12 @@ render() {
                   data-dismiss="modal"
                   aria-label="Close"
                 >
-                  <span aria-hidden="true">×</span>
+                  <span className="modal__times" aria-hidden="true">&times;</span>
                 </button>
                 <h2 className="modal__title" id="modalTitle">Confirm Delete</h2>
               </div>
               <div className="modal__body">
-                <p>Are you sure you want to delete this recipe?</p>
+                <p>Delete this recipe?</p>
               </div>
               <div className="modal__footer">
                 <button

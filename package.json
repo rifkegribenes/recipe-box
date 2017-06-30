@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --inline --content-base . --history-api-fallback",
     "build": "NODE_ENV=production webpack -p",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

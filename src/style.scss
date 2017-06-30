@@ -396,6 +396,7 @@ background: linear-gradient(to top, #41A6BA, #5a8ead); /* W3C, IE 10+/ Edge, Fir
 	transition: opacity .15s linear;
 	color: white;
 
+
 	&__dialog {
 		-webkit-transform: translate(0,0);
     -ms-transform: translate(0,0);
@@ -408,11 +409,11 @@ background: linear-gradient(to top, #41A6BA, #5a8ead); /* W3C, IE 10+/ Edge, Fir
     max-width: 100%;
     margin: 30px auto;
     position: relative;
+    -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
 	}
 
 	&__content {
-		-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
-    box-shadow: 0 5px 15px rgba(0,0,0,.5);
     position: relative;
 	color: white;
 	background: #41A6BA;  /* fallback for old browsers */
@@ -483,8 +484,9 @@ background: linear-gradient(to bottom, #41A6BA, #5a8ead); /* W3C, IE 10+/ Edge, 
     display: inline-block;
     padding: 6px 12px;
     margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
+	font-family: inherit;
+	text-transform: uppercase;
+	font-size: .8em;
     line-height: 1.4em;
     text-align: center;
     white-space: nowrap;
@@ -499,29 +501,10 @@ background: linear-gradient(to bottom, #41A6BA, #5a8ead); /* W3C, IE 10+/ Edge, 
     background-image: none;
     border: 1px solid transparent;
 
-    &:hover {
-    	color: #333;
-    	background-color: #e6e6e6;
-    	border-color: #adadad;
-    }
-
-    &:active {
-    	background-image: none;
-	    color: #333;
-	    background-color: #e6e6e6;
-	    border-color: #adadad;
-	    outline: 0;
-    }
-
-    &:focus {
-	    background-color: #e6e6e6;
-	    border-color: #8c8c8c;
-	    color: #333;
-	    text-decoration: none;
-	    outline: thin dotted;
+		&:focus {outline: thin dotted;
 	    outline: 5px auto -webkit-focus-ring-color;
 	    outline-offset: -2px;
-    }
+		}
   }
 
   &__close--btn {
@@ -529,14 +512,12 @@ background: linear-gradient(to bottom, #41A6BA, #5a8ead); /* W3C, IE 10+/ Edge, 
   }
 
   &__confirm {
-  	margin-left: 5px;
+  	margin-left: 10px;
   	color: #fff;
-    background-color: $color_red;
-    border-color: #d43f3a;
+    background-color: $color_kred;
 
     &:hover, &:active  {
-    background-color: $color_red-lighter;
-    border-color: #ac2925;
+    background-color: $color_korange;
     }
 
     &:focus {

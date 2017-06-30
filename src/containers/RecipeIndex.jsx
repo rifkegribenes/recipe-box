@@ -8,7 +8,7 @@ class RecipeIndex extends Component {
   constructor() {
     super();
     this.state = {
-      recipes: JSON.parse(localStorage.getItem('recipes')) || {},
+      recipes: JSON.parse(localStorage.getItem('recipes')) || defaultRecipes,
       msg: false,
       modalOpen: false,
       deleteKey: null,
@@ -20,17 +20,12 @@ class RecipeIndex extends Component {
   }
 
   componentDidMount() {
-    if (!this.state.recipes) {
-      this.setState({
-        recipes: defaultRecipes,
-      });
-    } else {
-      const cachedRecipes = JSON.parse(localStorage.getItem('recipes'));
-      this.setState({
-        recipes: cachedRecipes,
-      });
+    let init = JSON.parse(localStorage.getItem('recipes')) || defaultRecipes;
+    this.setState({recipes:  init});
+  }
 
-    }
+  componentDidUpdate(prevProps, prevState) {
+    localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
   }
 
   componentWillUnmount() {
@@ -76,7 +71,7 @@ class RecipeIndex extends Component {
 
 
 render() {
-  let recipesArr = Object.values(this.state.recipes).map(recipe => (
+  let recipesArr = this.state.recipes ? Object.values(this.state.recipes).map(recipe => (
         <tr key={recipe.key} className="recipeInd__row" >
           <td className="recipeInd__cell recipeInd__title">
             <Link to={`/recipes/${recipe.key}`}>
@@ -100,7 +95,7 @@ render() {
               onClick={() => this.openModal(recipe.key)}
             />
           </td>
-        </tr>));
+        </tr>)) : [];
 
     return (
 

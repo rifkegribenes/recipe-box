@@ -34,7 +34,7 @@ adjustTextArea(target) {
   let adjustedHeight = target.clientHeight;
   adjustedHeight = Math.max(target.scrollHeight, adjustedHeight);
   if (adjustedHeight > target.clientHeight)
-    target.style.height = adjustedHeight + "px";
+    target.style.height = adjustedHeight + 20 + "px";
 }
 
 handleChange({target}) {

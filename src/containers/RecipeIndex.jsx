@@ -20,39 +20,33 @@ class RecipeIndex extends Component {
   }
 
   componentDidMount() {
-    let init = JSON.parse(localStorage.getItem('recipes')) || defaultRecipes;
-    this.setState({recipes:  init});
+    const init = JSON.parse(localStorage.getItem('recipes')) || defaultRecipes;
+    this.setState({ recipes: init });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
   }
 
   componentWillUnmount() {
-  	localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
+    localStorage.setItem('recipes', JSON.stringify(this.state.recipes));
   }
 
   onDelete(key) {
-    let recipes = {...this.state.recipes};
+    const recipes = { ...this.state.recipes };
     delete recipes[key];
-  this.setState(prevState => {
-    return {
-    msg: true,
-    modalOpen: false,
-    recipes,
-    };
-   });
-      setTimeout(() => {
-        this.setState({
-          msg: false,
-          deleteKey: null,
-        });
-      }, 2000);
+    this.setState(prevState => ({ ...prevState, msg: true, modalOpen: false, recipes }));
+    setTimeout(() => {
+      this.setState({
+        msg: false,
+        deleteKey: null,
+      });
+    }, 2000);
   }
 
   onReset() {
-  	localStorage.clear();
-  	this.setState({
+    localStorage.clear();
+    this.setState({
       recipes: defaultRecipes,
       msg: false,
       modalOpen: false,
@@ -69,36 +63,34 @@ class RecipeIndex extends Component {
   }
 
 
-
-render() {
-  let recipesArr = this.state.recipes ? Object.values(this.state.recipes).map(recipe => (
-        <tr key={recipe.key} className="recipeInd__row" >
-          <td className="recipeInd__cell recipeInd__title">
-            <Link to={`/recipes/${recipe.key}`}>
-              {recipe.title}
-            </Link>
-          </td>
-          <td className="recipeInd__cell recipeInd__categories">
-            {recipe.categories}
-          </td>
-          <td className="recipeInd__cell recipeInd__icon-container">
-            <Link
-              to={`/edit/${recipe.key}`}
-              className=""
-            >
-              <div className="recipeInd__icon recipeInd__icon--edit" />
-            </Link>
-          </td>
-          <td className="recipeInd__cell recipeInd__icon-container">
-            <button
-              className="recipeInd__icon recipeInd__icon--delete"
-              onClick={() => this.openModal(recipe.key)}
-            />
-          </td>
-        </tr>)) : [];
+  render() {
+    const recipesArr = this.state.recipes ? Object.values(this.state.recipes).map(recipe => (
+      <tr key={recipe.key} className="recipeInd__row" >
+        <td className="recipeInd__cell recipeInd__title">
+          <Link to={`/recipes/${recipe.key}`}>
+            {recipe.title}
+          </Link>
+        </td>
+        <td className="recipeInd__cell recipeInd__categories">
+          {recipe.categories}
+        </td>
+        <td className="recipeInd__cell recipeInd__icon-container">
+          <Link
+            to={`/edit/${recipe.key}`}
+            className=""
+          >
+            <div className="recipeInd__icon recipeInd__icon--edit" />
+          </Link>
+        </td>
+        <td className="recipeInd__cell recipeInd__icon-container">
+          <button
+            className="recipeInd__icon recipeInd__icon--delete"
+            onClick={() => this.openModal(recipe.key)}
+          />
+        </td>
+      </tr>)) : [];
 
     return (
-
       <div className="recipeInd__container">
         <Modal
           isOpen={this.state.modalOpen}
@@ -153,18 +145,18 @@ render() {
               </tr>
             </thead>
             <tbody>
-            {!recipesArr.length ?
-            <tr className="recipeInd__row"><td className="recipeInd__cell" colSpan={4}>No Recipes</td></tr> :
-              recipesArr.reverse()
+              {!recipesArr.length ?
+                <tr className="recipeInd__row"><td className="recipeInd__cell" colSpan={4}>No Recipes</td></tr> :
+							recipesArr.reverse()
 
-            }
+						}
             </tbody>
           </table>
-      </div>
+        </div>
       </div>
 
     );
-}
+  }
 }
 
 export default RecipeIndex;

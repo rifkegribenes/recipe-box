@@ -33,7 +33,7 @@ const defaultRecipes = {
 			],
 			instructionString: 'Put a small quantity of bread or butter into a slow fire\nAdd the milk\nAdd one inch of sugar or one pint of cream\nAdd the other ingredients, except the electrician\nSpread hot milk over the fire until it begins to spin and boil\nAdd a dash of red water\nThe water is often accompanied by some sort of uncolored lemon, or orange, or canned lobster, or canned fish, or canned milk, or three eggs\nIn deep enough water, the eggs are usually called the crabs\nBe sure to milk the eggs until they turn into a fish mixture\nThe mixture is quite soft, but not so oily that it destroys most people unacquainted with mayonnaise\nBe very tender when you want to be very attractive, but if you prefer your guests hungry, you will not allow them to use the meat\nThe top of each person, if desired, is usually called a hot fat flour cup\nWash a few slices of lemon juice and pour all of them into the deep, narrow gashes in the bottom of your\nhands for thirty hours before placing a white fish in the center of the center of an important\nFrench mustard\nBe filled with bread or toast or a combination of these two extremes\nIn an opportunity thick enough to taste pour custard over each person who cannot drink your refrigerator',
 		source: {
-			name: 'Jamie Brew',
+			name: 'Recipe created with a predictive text imiatator by Jamie Brew',
 			url: 'https://twitter.com/jamieabrew/status/695060640931549184',
 		},
 		key: 1,
@@ -77,7 +77,7 @@ const defaultRecipes = {
 			],
 		instructionString: 'In small bowl, stirring to decorate, about 4 minutes.\nRemove from pan or until it gets roll is cooked.\nDrain beans; spread one egg yolks in a large bowl.\nPour off fruit slices.\nMake a slices of the sauces,\nand white replacer pieces from liquid.',
 			source: {
-				name: 'Tom Brewe',
+				name: 'Recipe created by a neural net trained by Tom Brewe',
 				url: 'https://gist.github.com/nylki/1efbaa36635956d35bcc',
 			},
 			key: 2,
@@ -122,7 +122,7 @@ const defaultRecipes = {
 				],
 			instructionString: 'Preheat oven to 350.\nRemove from pan; fold into pieces and season.\nAdd remaining butter and sugar.\nCover with baking sheets.\nSpread crumbled barley on a parmesan cheese it.',
 			source: {
-				name: 'Tom Brewe',
+				name: 'Recipe created by a neural net trained by Tom Brewe',
 				url: 'https://gist.github.com/nylki/1efbaa36635956d35bcc',
 			},
 			key: 3,
@@ -164,7 +164,7 @@ const defaultRecipes = {
 				],
 			instructionString: 'Preheat oven to 350F. Combine sugar, salt, baking soda, celery and sugar.\nAdd the chicken broth well.\nAdd the cornstarch to the pan; cool.\nAdd the olive oil, oil, and basil or cooking spray.\nPour the onions until melted.\nPlace the fruit spassed in the bottom and separate the bottom of a 10-inch baking sheet; add the beef plain,stock and a day little and pour off top.\nSpoon fat container.\nPlace a little toasted of the mixture in the peanut butter until the flours is not be ablewhosed in the oil.\nPour onto a bowl. Cut each piece into the oven.',
 			source: {
-				name: 'Tom Brewe',
+				name: 'Recipe created by a neural net trained by Tom Brewe',
 				url: 'https://gist.github.com/nylki/1efbaa36635956d35bcc',
 			},
 			key: 4,

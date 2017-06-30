@@ -687,16 +687,20 @@ padding-left: 0px;
 		color: white;
 	}
 
-	&__listItem:nth-of-type(10n+1) { background-color: #41A6BA; }
-	&__listItem:nth-of-type(10n+2) {	background-color: #4f99b4; }
-	&__listItem:nth-of-type(10n+3) { background-color: #5a8ead; }
-	&__listItem:nth-of-type(10n+4) {	background-color: #6485a8; }
-	&__listItem:nth-of-type(10n+5) {	background-color: #6e7aa4; }
-	&__listItem:nth-of-type(10n+6) {	background-color: #7b6f9f; }
-	&__listItem:nth-of-type(10n+7) {	background-color: #80699d; }
-	&__listItem:nth-of-type(10n+8) {	background-color: #66668c; }
-	&__listItem:nth-of-type(10n+9) {	background-color: #4a627e; }
-	&__listItem:nth-of-type(10n) { background-color: #366666; }
+	&__listItem:nth-of-type(14n+1), .c1 { background-color: #41A6BA; }
+	&__listItem:nth-of-type(14n+2), .c2 { background-color: #4f99b4; }
+	&__listItem:nth-of-type(14n+3), .c3 { background-color: #5a8ead; }
+	&__listItem:nth-of-type(14n+4), .c4 { background-color: #6485a8; }
+	&__listItem:nth-of-type(14n+5), .c5 { background-color: #66668c; }
+	&__listItem:nth-of-type(14n+6), .c6 { background-color: #4a627e; }
+  &__listItem:nth-of-type(14n+7), .c7 { background-color: #2a5e6b; }
+	&__listItem:nth-of-type(14n+8), .c8 { background-color: #3d6a65; }
+	&__listItem:nth-of-type(14n+9), .c9 { background-color: #5a785c; }
+	&__listItem:nth-of-type(14n+10), .c10 { background-color: #768657; }
+	&__listItem:nth-of-type(14n+11), .c11 { background-color: #939450; }
+	&__listItem:nth-of-type(14n+12), .c12 { background-color: #6ea48c; }
+	&__listItem:nth-of-type(14n+13), .c13 { background-color: #50a5aa;}
+	&__listItem:nth-of-type(14n), .c14 { background-color: #2daeb6; }
 
 	&__meta {
 
@@ -704,6 +708,7 @@ padding-left: 0px;
 		text-align: center;
 		font-size: .75em;
 		letter-spacing: 1px;
+		color: $color_kteal-lighter;
 
 		& a {
 			color: inherit;
@@ -711,7 +716,7 @@ padding-left: 0px;
 			border-bottom: 1px dotted;
 
 			&:hover, &:active, &:focus {
-				color: $color_kteal-lighter;
+				color: $color_korange;
 			}
 		}
 	}

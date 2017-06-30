@@ -17,6 +17,7 @@ class EditRecipe extends React.Component {
         categories: [],
         source: {},
       },
+      msg: false,
      };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,16 +49,24 @@ handleSubmit(event) {
     let key = this.state.key;
     let ingredients = this.state.recipe.ingredientString.split('\n');
     let instructions = this.state.recipe.instructionString.split('\n');
-    this.setState({
+    this.setState(prevState => {
+      return {
       recipe: {
         ingredients,
         instructions
-      }
-    })
+      },
+      msg: true,
+    }
+    });
     recipes[key] = this.state.recipe;
     this.setState(prevState => {
     localStorage.setItem('recipes', JSON.stringify(recipes));
-    this.props.history.push('/');
+    setTimeout(() => {
+        this.setState({
+          msg: false,
+        });
+  this.props.history.push('/');
+      }, 2000);
     return { recipes };
    });
   }
@@ -72,6 +81,7 @@ render() {
         <h2 className="newRecipe__banner">.:: Update Recipe ::.</h2>
         <div className="newRecipe__container">
           <form className="newRecipe__form">
+          {this.state.msg && <div className="recipeInd__message">Your recipe was saved.</div>}
             <input
               className="newRecipe__input c1"
               type="text" name="title"
@@ -112,7 +122,6 @@ render() {
               className="newRecipe__cancel newRecipe__button"
             >Cancel</Link>
             </div>
-            {this.state.msg && <div className="recipeInd__message">Your recipe was saved.</div>}
           </form>
         </div>
       </div>

@@ -82,6 +82,7 @@ render() {
         <h2 className="newRecipe__banner">.:: Add Recipe ::.</h2>
         <div className="newRecipe__container">
           <form className="newRecipe__form">
+          {this.state.msg && <div className="recipeInd__message">Your recipe was saved.</div>}
             <input
               className="newRecipe__input c1"
               type="text" name="title"
@@ -120,7 +121,6 @@ render() {
               className="newRecipe__cancel newRecipe__button"
             ><span>Cancel</span></Link>
             </div>
-            {this.state.msg && <div className="recipeInd__message">Your recipe was saved.</div>}
           </form>
         </div>
       </div>

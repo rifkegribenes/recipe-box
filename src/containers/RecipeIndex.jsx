@@ -100,7 +100,6 @@ render() {
     return (
 
       <div className="recipeInd__container">
-      <button onClick={() => this.onReset()}>Reset</button>
         <Modal
           isOpen={this.state.modalOpen}
           onAfterOpen={this.afterOpenModal}
@@ -131,13 +130,13 @@ render() {
                   onClick={this.closeModal}
                   className="modal__button modal__close--btn"
                   data-dismiss="modal"
-                >Cancel</button>
+                ><span>Cancel</span></button>
                 <button
                   type="button"
                   onClick={() => this.onDelete(this.state.deleteKey)}
                   className="modal__button modal__confirm"
                   data-dismiss="modal"
-                >Delete</button>
+                ><span>Delete</span></button>
               </div>
             </div>
           </div>

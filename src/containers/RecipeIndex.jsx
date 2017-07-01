@@ -153,6 +153,12 @@ class RecipeIndex extends Component {
             </tbody>
           </table>
         </div>
+        <div className="newRecipe__buttoncont">
+      <button
+        className="newRecipe__button"
+        onClick={() => this.onReset()}
+      ><span>Reset to Default</span></button>
+      </div>
       </div>
 
     );

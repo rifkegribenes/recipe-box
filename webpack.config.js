@@ -63,8 +63,7 @@ module.exports = {
 	output: {
 		filename: 'index.js',
 		path: path.join(__dirname, '/build'),
-		// publicPath: '/',
-		publicPath: '/recipe-box/',
+		publicPath: '/',
 	},
 	plugins: dev ?
 	[

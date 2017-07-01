@@ -10,6 +10,9 @@ const App = () => (
   <BrowserRouter>
     <main>
       <h1>Recipe box</h1>
+      <div className="vr__meta">
+      <a href="https://github.com/rifkegribenes/recipe-box" target="blank" rel="noopener noreferrer">View code on GitHub</a>
+      </div>
       <ul className="nav">
         <li className="nav__item"><Link to="/">All Recipes</Link></li>
         <li className="nav__item"><Link to="/new">New Recipe</Link></li>
